@@ -57,6 +57,7 @@ public class UserService {
 			EntityTransaction et = em.getTransaction();
 			et.begin();
 			em.persist(user);
+			em.flush();
 			user = em.getReference(User.class, user.getId());
 			et.commit();
 			user.setOK();

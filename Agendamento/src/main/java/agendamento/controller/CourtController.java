@@ -36,8 +36,8 @@ public class CourtController {
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public void addCourt(Court court) {
-		courtService.addCourt(court);
+	public Court addCourt(Court court) {
+		return (courtService.addCourt(court));
 	}
 
 	@PUT
@@ -51,6 +51,12 @@ public class CourtController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Court deleteCourt(@PathParam("id") int id) {
 		return (courtService.deleteCourt(id));
+	}
+
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	public Court deleteCourt(Court court) {
+		return (courtService.deleteCourt(court));
 	}
 
 }

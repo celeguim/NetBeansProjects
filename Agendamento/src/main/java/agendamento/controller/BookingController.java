@@ -36,8 +36,8 @@ public class BookingController {
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public void addBooking(Booking booking) {
-		bookingService.addBooking(booking);
+	public Booking addBooking(Booking booking) {
+		return(bookingService.addBooking(booking));
 	}
 
 	@PUT

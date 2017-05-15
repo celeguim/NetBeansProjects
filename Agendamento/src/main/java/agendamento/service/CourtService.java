@@ -58,6 +58,7 @@ public class CourtService {
 			et.begin();
 			em.persist(court);
 			court = em.getReference(Court.class, court.getId());
+			em.flush();
 			et.commit();
 			court.setOK();
 		} catch (Exception e) {
@@ -82,6 +83,7 @@ public class CourtService {
 			ref.setAvailable(court.getAvailable());
 			ref.setId(court.getId());
 			ref.setName(court.getName());
+			em.flush();
 			court = ref;
 			et.commit();
 			court.setOK();
@@ -106,6 +108,29 @@ public class CourtService {
 			et.begin();
 			court = em.getReference(Court.class, id);
 			em.remove(court);
+			et.commit();
+			court.setOK();
+		} catch (Exception e) {
+			court.setError(e.toString());
+			e.printStackTrace(System.out);
+		} finally {
+			if (em != null) {
+				em.clear();
+			}
+		}
+		return (court);
+	}
+
+	public Court deleteCourt(Court court) {
+		EntityManager em = null;
+		try {
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendamentoPU");
+			em = emf.createEntityManager();
+			EntityTransaction et = em.getTransaction();
+			et.begin();
+			court = em.getReference(Court.class, court.getId());
+			em.remove(court);
+			em.flush();
 			et.commit();
 			court.setOK();
 		} catch (Exception e) {

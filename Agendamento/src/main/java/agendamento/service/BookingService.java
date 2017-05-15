@@ -57,6 +57,7 @@ public class BookingService {
 			EntityTransaction et = em.getTransaction();
 			et.begin();
 			em.persist(user);
+			em.flush();
 			user = em.getReference(Booking.class, user.getId());
 			et.commit();
 			user.setOK();
@@ -90,6 +91,7 @@ public class BookingService {
 			ref.setPlayerName(booking.getPlayerName());
 			ref.setTblCourt(booking.getTblCourt());
 			ref.setTblPlayer(booking.getTblPlayer());
+			em.flush();
 			booking = ref;
 			et.commit();
 			booking.setOK();

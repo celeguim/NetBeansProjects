@@ -36,8 +36,8 @@ public class PlayerController {
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public void addPlayer(Player player) {
-		playerService.addPlayer(player);
+	public Player addPlayer(Player player) {
+		return(playerService.addPlayer(player));
 	}
 
 	@PUT

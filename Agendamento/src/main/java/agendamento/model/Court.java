@@ -11,16 +11,33 @@ import java.util.List;
 @Entity
 @Table(name = "tbl_courts")
 @NamedQuery(name = "Court.findAll", query = "SELECT c FROM Court c")
-public class Court extends Response implements Serializable {
+public class Court implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private byte available;
-
+	private Boolean available;
 	private String name;
+	int respId;
+	String respDesc;
+
+	public String getRespDesc() {
+		return respDesc;
+	}
+
+	public void setRespDesc(String respDesc) {
+		this.respDesc = respDesc;
+	}
+
+	public int getRespId() {
+		return respId;
+	}
+
+	public void setRespId(int id) {
+		this.respId = id;
+	}
 
 	// bi-directional many-to-one association to Booking
 	@OneToMany(mappedBy = "tblCourt")
@@ -37,11 +54,11 @@ public class Court extends Response implements Serializable {
 		this.id = id;
 	}
 
-	public byte getAvailable() {
+	public Boolean getAvailable() {
 		return this.available;
 	}
 
-	public void setAvailable(byte available) {
+	public void setAvailable(Boolean available) {
 		this.available = available;
 	}
 
@@ -73,6 +90,16 @@ public class Court extends Response implements Serializable {
 		tblBooking.setTblCourt(null);
 
 		return tblBooking;
+	}
+
+	public void setOK() {
+		this.respDesc = "OK";
+		this.respId = 0;
+	}
+
+	public void setError(String error) {
+		this.respDesc = error;
+		this.respId = -1;
 	}
 
 }

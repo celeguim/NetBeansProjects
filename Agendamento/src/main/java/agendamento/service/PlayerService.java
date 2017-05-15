@@ -15,7 +15,7 @@ public class PlayerService {
 
 	@SuppressWarnings("unchecked")
 	public List<Player> getAllPlayers() {
-		List<Player> userList = new ArrayList<>();
+		List<Player> playerList = new ArrayList<>();
 		EntityManager em;
 		try {
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendamentoPU");
@@ -23,52 +23,53 @@ public class PlayerService {
 			EntityTransaction et = em.getTransaction();
 			et.begin();
 			Query query = em.createQuery("from Player t");
-			userList = query.getResultList();
+			playerList = query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace(System.out);
 		}
-		return userList;
+		return playerList;
 	}
 
 	public Player getPlayerById(int id) {
-		Player user = new Player();
+		Player player = new Player();
 		EntityManager em = null;
 		try {
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendamentoPU");
 			em = emf.createEntityManager();
-			user = em.find(Player.class, id);
-			user.setOK();
+			player = em.find(Player.class, id);
+			player.setOK();
 		} catch (Exception e) {
-			user.setError(e.toString());
+			player.setError(e.toString());
 			e.printStackTrace(System.out);
 		} finally {
 			if (em != null) {
 				em.clear();
 			}
 		}
-		return user;
+		return player;
 	}
 
-	public Player addPlayer(Player user) {
+	public Player addPlayer(Player player) {
 		EntityManager em = null;
 		try {
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendamentoPU");
 			em = emf.createEntityManager();
 			EntityTransaction et = em.getTransaction();
 			et.begin();
-			em.persist(user);
-			user = em.getReference(Player.class, user.getId());
+			em.persist(player);
+			em.flush();
+			player = em.getReference(Player.class, player.getId());
 			et.commit();
-			user.setOK();
+			player.setOK();
 		} catch (Exception e) {
-			user.setError(e.toString());
+			player.setError(e.toString());
 			e.printStackTrace(System.out);
 		} finally {
 			if (em != null) {
 				em.clear();
 			}
 		}
-		return (user);
+		return (player);
 	}
 
 	public Player updatePlayer(Player player) {
@@ -84,8 +85,9 @@ public class PlayerService {
 			ref.setName(player.getName());
 			ref.setPassword(player.getPassword());
 			ref.setTelephone(player.getTelephone());
-			player = ref;
 			et.commit();
+			em.flush();
+			player = ref;
 			player.setOK();
 		} catch (Exception e) {
 			player.setError(e.toString());
@@ -100,25 +102,26 @@ public class PlayerService {
 
 	public Player deletePlayer(int id) {
 		EntityManager em = null;
-		Player user = new Player();
+		Player player = new Player();
 		try {
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendamentoPU");
 			em = emf.createEntityManager();
 			EntityTransaction et = em.getTransaction();
 			et.begin();
-			user = em.getReference(Player.class, id);
-			em.remove(user);
+			player = em.getReference(Player.class, id);
+			em.remove(player);
 			et.commit();
-			user.setOK();
+			em.flush();
+			player.setOK();
 		} catch (Exception e) {
-			user.setError(e.toString());
+			player.setError(e.toString());
 			e.printStackTrace(System.out);
 		} finally {
 			if (em != null) {
 				em.clear();
 			}
 		}
-		return (user);
+		return (player);
 	}
 
 }
