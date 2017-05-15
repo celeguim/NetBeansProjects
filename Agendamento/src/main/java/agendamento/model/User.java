@@ -11,24 +11,19 @@ import javax.persistence.*;
 @Table(name = "tbl_users")
 @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
 public class User extends Response implements Serializable {
-	private static final long serialVersionUID = -3423938356666170723L;
+	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
 	private UserPK id;
 
-	@Column(name = "ACTIVE")
-	private Boolean active;
+	private byte active;
 
-	@Column(name = "EMAIL")
 	private String email;
 
-	@Column(name = "PASSWORD")
 	private String password;
 
-	@Column(name = "TELEPHONE")
 	private String telephone;
 
-	@Column(name = "TYPE")
 	private String type;
 
 	public User() {
@@ -42,11 +37,11 @@ public class User extends Response implements Serializable {
 		this.id = id;
 	}
 
-	public Boolean getActive() {
+	public byte getActive() {
 		return this.active;
 	}
 
-	public void setActive(Boolean active) {
+	public void setActive(byte active) {
 		this.active = active;
 	}
 

@@ -24,8 +24,7 @@ public class UserController {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> getUsers() {
-		List<User> listOfCountries = userService.getAllUsers();
-		return listOfCountries;
+		return (userService.getAllUsers());
 	}
 
 	@GET

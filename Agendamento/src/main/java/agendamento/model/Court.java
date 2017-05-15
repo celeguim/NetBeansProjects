@@ -4,32 +4,27 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the tbl_courts database table.
  * 
  */
 @Entity
-@Table(name="tbl_courts")
-@NamedQuery(name="Court.findAll", query="SELECT c FROM Court c")
-public class Court implements Serializable {
-	private static final long serialVersionUID = 4758142319258112266L;
+@Table(name = "tbl_courts")
+@NamedQuery(name = "Court.findAll", query = "SELECT c FROM Court c")
+public class Court extends Response implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name="NAME")
+	private byte available;
+
 	private String name;
 
-	//bi-directional many-to-one association to Booking
-	@OneToMany(mappedBy="tblCourt1")
-	private List<Booking> tblBookings1;
-
-	//bi-directional many-to-one association to Booking
-	@OneToMany(mappedBy="tblCourt2")
-	private List<Booking> tblBookings2;
+	// bi-directional many-to-one association to Booking
+	@OneToMany(mappedBy = "tblCourt")
+	private List<Booking> tblBookings;
 
 	public Court() {
 	}
@@ -42,6 +37,14 @@ public class Court implements Serializable {
 		this.id = id;
 	}
 
+	public byte getAvailable() {
+		return this.available;
+	}
+
+	public void setAvailable(byte available) {
+		this.available = available;
+	}
+
 	public String getName() {
 		return this.name;
 	}
@@ -50,48 +53,26 @@ public class Court implements Serializable {
 		this.name = name;
 	}
 
-	public List<Booking> getTblBookings1() {
-		return this.tblBookings1;
+	public List<Booking> getTblBookings() {
+		return this.tblBookings;
 	}
 
-	public void setTblBookings1(List<Booking> tblBookings1) {
-		this.tblBookings1 = tblBookings1;
+	public void setTblBookings(List<Booking> tblBookings) {
+		this.tblBookings = tblBookings;
 	}
 
-	public Booking addTblBookings1(Booking tblBookings1) {
-		getTblBookings1().add(tblBookings1);
-		tblBookings1.setTblCourt1(this);
+	public Booking addTblBooking(Booking tblBooking) {
+		getTblBookings().add(tblBooking);
+		tblBooking.setTblCourt(this);
 
-		return tblBookings1;
+		return tblBooking;
 	}
 
-	public Booking removeTblBookings1(Booking tblBookings1) {
-		getTblBookings1().remove(tblBookings1);
-		tblBookings1.setTblCourt1(null);
+	public Booking removeTblBooking(Booking tblBooking) {
+		getTblBookings().remove(tblBooking);
+		tblBooking.setTblCourt(null);
 
-		return tblBookings1;
-	}
-
-	public List<Booking> getTblBookings2() {
-		return this.tblBookings2;
-	}
-
-	public void setTblBookings2(List<Booking> tblBookings2) {
-		this.tblBookings2 = tblBookings2;
-	}
-
-	public Booking addTblBookings2(Booking tblBookings2) {
-		getTblBookings2().add(tblBookings2);
-		tblBookings2.setTblCourt2(this);
-
-		return tblBookings2;
-	}
-
-	public Booking removeTblBookings2(Booking tblBookings2) {
-		getTblBookings2().remove(tblBookings2);
-		tblBookings2.setTblCourt2(null);
-
-		return tblBookings2;
+		return tblBooking;
 	}
 
 }

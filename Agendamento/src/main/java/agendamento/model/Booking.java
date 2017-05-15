@@ -12,12 +12,11 @@ import java.util.Date;
 @Entity
 @Table(name = "tbl_booking")
 @NamedQuery(name = "Booking.findAll", query = "SELECT b FROM Booking b")
-public class Booking implements Serializable {
-	private static final long serialVersionUID = -2139040350098173047L;
+public class Booking extends Response implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
 	private int id;
 
 	@Column(name = "COURT_NAME")
@@ -41,35 +40,23 @@ public class Booking implements Serializable {
 	@Column(name = "DT_RES_TO")
 	private Time dtResTo;
 
-	@Column(name = "NAME")
 	private String name;
 
 	@Column(name = "PLAYER_NAME")
 	private String playerName;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "TIMESTAMP")
 	private Date timestamp;
 
 	// bi-directional many-to-one association to Court
 	@ManyToOne
-	@JoinColumn(name = "COURT_ID")
-	private Court tblCourt1;
-
-	// bi-directional many-to-one association to Player
-	@ManyToOne
-	@JoinColumn(name = "PLAYER_ID")
-	private Player tblPlayer1;
-
-	// bi-directional many-to-one association to Court
-	@ManyToOne
 	@JoinColumn(name = "TBL_COURTS_ID")
-	private Court tblCourt2;
+	private Court tblCourt;
 
 	// bi-directional many-to-one association to Player
 	@ManyToOne
 	@JoinColumn(name = "TBL_PLAYERS_ID")
-	private Player tblPlayer2;
+	private Player tblPlayer;
 
 	public Booking() {
 	}
@@ -154,36 +141,20 @@ public class Booking implements Serializable {
 		this.timestamp = timestamp;
 	}
 
-	public Court getTblCourt1() {
-		return this.tblCourt1;
+	public Court getTblCourt() {
+		return this.tblCourt;
 	}
 
-	public void setTblCourt1(Court tblCourt1) {
-		this.tblCourt1 = tblCourt1;
+	public void setTblCourt(Court tblCourt) {
+		this.tblCourt = tblCourt;
 	}
 
-	public Player getTblPlayer1() {
-		return this.tblPlayer1;
+	public Player getTblPlayer() {
+		return this.tblPlayer;
 	}
 
-	public void setTblPlayer1(Player tblPlayer1) {
-		this.tblPlayer1 = tblPlayer1;
-	}
-
-	public Court getTblCourt2() {
-		return this.tblCourt2;
-	}
-
-	public void setTblCourt2(Court tblCourt2) {
-		this.tblCourt2 = tblCourt2;
-	}
-
-	public Player getTblPlayer2() {
-		return this.tblPlayer2;
-	}
-
-	public void setTblPlayer2(Player tblPlayer2) {
-		this.tblPlayer2 = tblPlayer2;
+	public void setTblPlayer(Player tblPlayer) {
+		this.tblPlayer = tblPlayer;
 	}
 
 }
