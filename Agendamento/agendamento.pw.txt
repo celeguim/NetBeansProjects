@@ -1,0 +1,14 @@
+mysql root Welcome!01
+glassfish: admin / welcome1
+https://github.com/celeguim/NetBeansProjects.git
+vps408918.ovh.net
+#wmic process where processid=8208 get commandline
+
+examples
+https://www.pegaxchange.com/2016/08/11/creating-a-rest-web-service-with-eclipse-neon-tomcat-9-jax-rs-jersey-2-24-and-jackson/
+http://www.java2blog.com/2016/03/restful-web-services-jaxrs-crud-example.html
+
+
+Erros
+java.lang.IllegalArgumentException: object is not an instance of declaring class
+http://www.adam-bien.com/roller/abien/entry/glassfish_jersey_exception_java_lang
