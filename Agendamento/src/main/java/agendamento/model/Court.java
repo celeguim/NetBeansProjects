@@ -11,33 +11,21 @@ import java.util.List;
 @Entity
 @Table(name = "tbl_courts")
 @NamedQuery(name = "Court.findAll", query = "SELECT c FROM Court c")
-public class Court implements Serializable {
+public class Court extends Response implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private Boolean available;
 	private String name;
-	int respId;
-	String respDesc;
 
-	public String getRespDesc() {
-		return respDesc;
-	}
+	@Lob
+	private String respdesc;
 
-	public void setRespDesc(String respDesc) {
-		this.respDesc = respDesc;
-	}
+	private int respid;
 
-	public int getRespId() {
-		return respId;
-	}
-
-	public void setRespId(int id) {
-		this.respId = id;
-	}
+	private String status;
 
 	// bi-directional many-to-one association to Booking
 	@OneToMany(mappedBy = "tblCourt")
@@ -54,20 +42,36 @@ public class Court implements Serializable {
 		this.id = id;
 	}
 
-	public Boolean getAvailable() {
-		return this.available;
-	}
-
-	public void setAvailable(Boolean available) {
-		this.available = available;
-	}
-
 	public String getName() {
 		return this.name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getRespdesc() {
+		return this.respdesc;
+	}
+
+	public void setRespdesc(String respdesc) {
+		this.respdesc = respdesc;
+	}
+
+	public int getRespid() {
+		return this.respid;
+	}
+
+	public void setRespid(int respid) {
+		this.respid = respid;
+	}
+
+	public String getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public List<Booking> getTblBookings() {
@@ -90,16 +94,6 @@ public class Court implements Serializable {
 		tblBooking.setTblCourt(null);
 
 		return tblBooking;
-	}
-
-	public void setOK() {
-		this.respDesc = "OK";
-		this.respId = 0;
-	}
-
-	public void setError(String error) {
-		this.respDesc = error;
-		this.respId = -1;
 	}
 
 }
