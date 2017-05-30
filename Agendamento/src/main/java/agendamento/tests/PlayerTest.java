@@ -13,7 +13,6 @@ public class PlayerTest {
 		player.setTelephone("799 898 996");
 		PlayerService service = new PlayerService();
 		service.addPlayer(player);
-
 	}
 
 }

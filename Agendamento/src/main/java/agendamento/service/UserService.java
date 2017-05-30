@@ -80,11 +80,13 @@ public class UserService {
 			EntityTransaction et = em.getTransaction();
 			et.begin();
 			User ref = em.getReference(User.class, user.getId());
-			ref.setActive(user.getActive());
+
+			ref.setStatus(user.getStatus());
 			ref.setEmail(user.getEmail());
 			ref.setPassword(user.getPassword());
 			ref.setTelephone(user.getTelephone());
 			ref.setType(user.getType());
+
 			user = ref;
 			et.commit();
 			user.setOK();

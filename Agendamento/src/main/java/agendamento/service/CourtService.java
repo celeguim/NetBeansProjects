@@ -80,9 +80,11 @@ public class CourtService {
 			EntityTransaction et = em.getTransaction();
 			et.begin();
 			Court ref = em.getReference(Court.class, court.getId());
-			ref.setAvailable(court.getAvailable());
+
 			ref.setId(court.getId());
 			ref.setName(court.getName());
+			ref.setStatus(court.getStatus());
+
 			em.flush();
 			court = ref;
 			et.commit();

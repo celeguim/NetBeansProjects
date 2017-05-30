@@ -80,17 +80,16 @@ public class BookingService {
 			EntityTransaction et = em.getTransaction();
 			et.begin();
 			Booking ref = em.getReference(Booking.class, booking.getId());
-			ref.setCourtName(booking.getCourtName());
+			
+			ref.setName(booking.getName());
 			ref.setDateFrom(booking.getDateFrom());
 			ref.setDateTo(booking.getDateTo());
-			ref.setDtResDay(booking.getDtResDay());
-			ref.setDtResFrom(booking.getDtResFrom());
-			ref.setDtResTo(booking.getDtResTo());
 			ref.setId(booking.getId());
-			ref.setName(booking.getName());
-			ref.setPlayerName(booking.getPlayerName());
+			ref.setTimestamp(booking.getTimestamp());
 			ref.setTblCourt(booking.getTblCourt());
 			ref.setTblPlayer(booking.getTblPlayer());
+			ref.setStatus(booking.getStatus());
+			
 			em.flush();
 			booking = ref;
 			et.commit();

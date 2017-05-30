@@ -2,7 +2,6 @@ package agendamento.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -19,9 +18,6 @@ public class Booking extends Response implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "COURT_NAME")
-	private String courtName;
-
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "DATE_FROM")
 	private Date dateFrom;
@@ -30,20 +26,14 @@ public class Booking extends Response implements Serializable {
 	@Column(name = "DATE_TO")
 	private Date dateTo;
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "DT_RES_DAY")
-	private Date dtResDay;
-
-	@Column(name = "DT_RES_FROM")
-	private Time dtResFrom;
-
-	@Column(name = "DT_RES_TO")
-	private Time dtResTo;
-
 	private String name;
 
-	@Column(name = "PLAYER_NAME")
-	private String playerName;
+	@Lob
+	private String respdesc;
+
+	private int respid;
+
+	private String status;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date timestamp;
@@ -69,14 +59,6 @@ public class Booking extends Response implements Serializable {
 		this.id = id;
 	}
 
-	public String getCourtName() {
-		return this.courtName;
-	}
-
-	public void setCourtName(String courtName) {
-		this.courtName = courtName;
-	}
-
 	public Date getDateFrom() {
 		return this.dateFrom;
 	}
@@ -93,30 +75,6 @@ public class Booking extends Response implements Serializable {
 		this.dateTo = dateTo;
 	}
 
-	public Date getDtResDay() {
-		return this.dtResDay;
-	}
-
-	public void setDtResDay(Date dtResDay) {
-		this.dtResDay = dtResDay;
-	}
-
-	public Time getDtResFrom() {
-		return this.dtResFrom;
-	}
-
-	public void setDtResFrom(Time dtResFrom) {
-		this.dtResFrom = dtResFrom;
-	}
-
-	public Time getDtResTo() {
-		return this.dtResTo;
-	}
-
-	public void setDtResTo(Time dtResTo) {
-		this.dtResTo = dtResTo;
-	}
-
 	public String getName() {
 		return this.name;
 	}
@@ -125,12 +83,28 @@ public class Booking extends Response implements Serializable {
 		this.name = name;
 	}
 
-	public String getPlayerName() {
-		return this.playerName;
+	public String getRespdesc() {
+		return this.respdesc;
 	}
 
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
+	public void setRespdesc(String respdesc) {
+		this.respdesc = respdesc;
+	}
+
+	public int getRespid() {
+		return this.respid;
+	}
+
+	public void setRespid(int respid) {
+		this.respid = respid;
+	}
+
+	public String getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Date getTimestamp() {
