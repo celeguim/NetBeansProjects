@@ -1,5 +1,7 @@
 package agendamento.controller;
 
+import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -9,16 +11,13 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Priorities;
 import javax.ws.rs.Produces;
+import javax.ws.rs.container.ContainerRequestContext;
+import javax.ws.rs.container.ContainerResponseContext;
+import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
-
-import com.sun.jersey.core.util.Priority;
-import com.sun.jersey.spi.container.ContainerRequest;
-import com.sun.jersey.spi.container.ContainerResponse;
-import com.sun.jersey.spi.container.ContainerResponseFilter;
 
 import agendamento.model.User;
 import agendamento.service.UserService;
@@ -26,10 +25,17 @@ import agendamento.service.UserService;
 @Path("/users")
 @LocalBean
 @Provider
-@Priority(Priorities.HEADER_DECORATOR)
 public class UserController implements ContainerResponseFilter {
-//
+	//
 	UserService userService = new UserService();
+
+	@GET
+	@Path("{id}")
+	public Response getId() {
+		return Response.ok() // 200
+				.entity(1, new Annotation[0]).header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
+	}
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -64,15 +70,11 @@ public class UserController implements ContainerResponseFilter {
 	}
 
 	@Override
-	public ContainerResponse filter(ContainerRequest request, ContainerResponse response) {
-		final MultivaluedMap<String, Object> headers = response.getHttpHeaders();
-
-		headers.add("Access-Control-Allow-Origin", "*");
-		headers.add("Access-Control-Allow-Headers", "Authorization, Origin, X-Requested-With, Content-Type");
-		headers.add("Access-Control-Expose-Headers", "Location, Content-Disposition");
-		headers.add("Access-Control-Allow-Methods", "POST, PUT, GET, DELETE, HEAD, OPTIONS");
-
-		return response;
+	public void filter(ContainerRequestContext request, ContainerResponseContext response) throws IOException {
+		response.getHeaders().add("Access-Control-Allow-Origin", "*");
+		response.getHeaders().add("Access-Control-Allow-Headers", "origin, content-type, accept, authorization");
+		response.getHeaders().add("Access-Control-Allow-Credentials", "true");
+		response.getHeaders().add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
 	}
 
 }
