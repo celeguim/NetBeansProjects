@@ -28,7 +28,7 @@ import agendamento.service.UserService;
 @Provider
 @Priority(Priorities.HEADER_DECORATOR)
 public class UserController implements ContainerResponseFilter {
-
+//
 	UserService userService = new UserService();
 
 	@GET

@@ -18,7 +18,7 @@ import agendamento.service.PlayerService;
 @Path("/players")
 @LocalBean
 public class PlayerController {
-
+//
 	PlayerService playerService = new PlayerService();
 
 	@GET

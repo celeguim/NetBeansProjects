@@ -18,7 +18,7 @@ import agendamento.service.BookingService;
 @Path("/bookings")
 @LocalBean
 public class BookingController {
-
+//
 	BookingService bookingService = new BookingService();
 
 	@GET

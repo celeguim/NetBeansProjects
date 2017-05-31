@@ -18,7 +18,7 @@ import agendamento.service.CourtService;
 @Path("/courts")
 @LocalBean
 public class CourtController {
-
+//
 	CourtService courtService = new CourtService();
 
 	@GET
