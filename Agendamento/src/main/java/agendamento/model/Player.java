@@ -4,19 +4,22 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the tbl_players database table.
  * 
  */
 @Entity
-@Table(name="tbl_players")
-@NamedQuery(name="Player.findAll", query="SELECT p FROM Player p")
+@Table(name = "tbl_players")
+@NamedQuery(name = "Player.findAll", query = "SELECT p FROM Player p")
 public class Player extends Response implements Serializable {
-	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7575324428984904699L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String email;
@@ -34,13 +37,13 @@ public class Player extends Response implements Serializable {
 
 	private String telephone;
 
-	//bi-directional many-to-one association to Booking
-	@OneToMany(mappedBy="tblPlayer")
+	// bi-directional many-to-one association to Booking
+	@OneToMany(mappedBy = "tblPlayer")
 	private List<Booking> tblBookings;
 
-	//bi-directional many-to-one association to User
+	// bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="TBL_USERS_USERNAME")
+	@JoinColumn(name = "TBL_USERS_USERNAME")
 	private User tblUser;
 
 	public Player() {

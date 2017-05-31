@@ -12,7 +12,11 @@ import java.util.List;
 @Table(name = "tbl_users")
 @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
 public class User extends Response implements Serializable {
-	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1864578974495666299L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -12,7 +12,11 @@ import java.util.Date;
 @Table(name = "tbl_booking")
 @NamedQuery(name = "Booking.findAll", query = "SELECT b FROM Booking b")
 public class Booking extends Response implements Serializable {
-	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7351592532912345283L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

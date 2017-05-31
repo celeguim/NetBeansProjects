@@ -9,8 +9,11 @@ import javax.persistence.*;
  */
 @Embeddable
 public class UserPK implements Serializable {
-	// default serial version id, required for serializable classes.
-	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5730464450289430028L;
 
 	private int id;
 

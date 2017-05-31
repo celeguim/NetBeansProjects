@@ -12,10 +12,12 @@ import java.util.List;
 @Table(name = "tbl_courts")
 @NamedQuery(name = "Court.findAll", query = "SELECT c FROM Court c")
 public class Court extends Response implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	// cacete de agulha
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9197314890699814145L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

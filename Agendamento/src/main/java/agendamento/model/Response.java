@@ -2,6 +2,8 @@ package agendamento.model;
 
 public class Response {
 
+	//
+
 	public int getRespId() {
 		return respId;
 	}
