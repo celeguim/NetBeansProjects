@@ -12,7 +12,7 @@ import javax.persistence.Query;
 import agendamento.model.Player;
 
 public class PlayerService {
-
+//
 	@SuppressWarnings("unchecked")
 	public List<Player> getAllPlayers() {
 		List<Player> playerList = new ArrayList<>();

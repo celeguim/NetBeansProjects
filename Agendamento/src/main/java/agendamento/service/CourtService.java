@@ -12,7 +12,7 @@ import javax.persistence.Query;
 import agendamento.model.Court;
 
 public class CourtService {
-
+//
 	@SuppressWarnings("unchecked")
 	public List<Court> getAllCourts() {
 		List<Court> courtList = new ArrayList<>();

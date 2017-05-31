@@ -12,7 +12,7 @@ import javax.persistence.Query;
 import agendamento.model.User;
 
 public class UserService {
-
+//
 	@SuppressWarnings("unchecked")
 	public List<User> getAllUsers() {
 		List<User> userList = new ArrayList<>();
