@@ -1,4 +1,4 @@
-package com.code2succeed.rest;
+package agendamento.controller;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

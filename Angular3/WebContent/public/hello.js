@@ -1,7 +1,7 @@
 angular.module('demo', [])
 .controller('Hello', function($scope, $http) {
-    $http.get('http://agendamento.ovh.net:8080/agendamento/rest/users/1').
+    $http.get('http://localhost:8080/agendamento/rest/hello').
         then(function(response) {
-            $scope.user = response.data;
+            $scope.hello = response.data;
         });
 });
