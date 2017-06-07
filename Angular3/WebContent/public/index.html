@@ -1,16 +1,22 @@
 <!doctype html>
-<html ng-app="demo">
-	<head>
-		<title>Hello AngularJS</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    	<script src="hello.js"></script>
-	</head>
 
-	<body>
-		<div ng-controller="Hello">
-			<p>Data {{ hello }}</p>
-			<p>The ID is {{ user.id }}</p>
-			<p>The content is {{ user.email }}</p>
-		</div>
-	</body>
+<html data-ng-app="demo">
+<head>
+<title>Hello AngularJS</title>
+</head>
+
+<body>
+    <input type="text" data-ng-model="nome" /> {{ nome }}
+	<div data-ng-controller="Hello">
+		<p>Nome <input data-ng-model="name" />  {{ name }}</p>
+		<p>The ID is {{ user.id }}</p>
+		<p>The content is {{ user.email }}</p>
+	</div>
+	
+
+
+    <script src="./angular.min.js"></script>
+    <script src="./hello.js"></script>
+
+</body>
 </html>

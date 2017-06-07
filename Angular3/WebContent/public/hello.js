@@ -5,3 +5,9 @@ angular.module('demo', [])
             $scope.hello = response.data;
         });
 });
+
+var myapp = angular.module('meuModulo', []);
+myapp.controller('myController', function($scope, $http) {
+	console.log($scope);
+    console.log($http);
+});
