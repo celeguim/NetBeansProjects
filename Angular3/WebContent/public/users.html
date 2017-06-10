@@ -1,0 +1,22 @@
+<!doctype html>
+
+<html>
+<head>
+<title>Users AngularJS</title>
+</head>
+
+<body>
+
+	<table data-ng-app="UserApp" data-ng-controller="UserController" border="1">
+		<tr data-ng-repeat="user in users">
+			<td>{{user.id}}</td>
+			<td>{{user.username}}</td>
+			<td>{{user.email}}</td>
+		</tr>
+	</table>
+
+	<script src="angular.min.js"></script>
+	<script src="users.js"></script>
+
+</body>
+</html>

@@ -15,9 +15,12 @@
 			<property name="javax.persistence.jdbc.user" value="agendamento" />
 			<property name="javax.persistence.jdbc.password" value="Welcome!01" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.schema-generation.database.action"
-				value="create" />
-			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+
+			<!-- javax.persistence.schema-generation.database.action : for database 
+				action, values are "none", "create", "drop-and-create", "drop". -->
+			<property name="eclipselink.ddl-generation" value="none" />
+
+
 		</properties>
 	</persistence-unit>
 </persistence>

@@ -1,0 +1,50 @@
+<!DOCTYPE html >
+<html data-ng-app="dashboard">
+<head>
+<title>AngularJS</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+</head>
+<body data-ng-controller="myController">
+	<table border='1'>
+		<tr data-ng-repeat="(key,val) in collValues">
+			<td data-ng-if="!hasChildren(val)">{{key}}</td>
+			<td data-ng-if="val === 'string'"><input type="text"
+				name="{{key}}"></input></td>
+			<td data-ng-if="val === 'number'"><input type="number"
+				name="{{key}}"></input></td>
+			<td data-ng-if="hasChildren(val)" colspan='2'>
+				<table border='1' data-ng-repeat="arrVal in val">
+					<tr data-ng-repeat="(key,val) in arrVal">
+						<td>{{key}}</td>
+						<td data-ng-if="val === 'string'"><input type="text"
+							name="{{key}}"></input></td>
+						<td data-ng-if="val === 'number'"><input type="number"
+							name="{{key}}"></input></td>
+					</tr>
+				</table>
+			</td>
+
+		</tr>
+	</table>
+</body>
+
+<script type="text/javascript">
+	var app = angular.module("dashboard", []);
+	app.controller("myController", function($scope) {
+		$scope.collValues = {
+			'name' : 'string',
+			'id' : 'string',
+			'phone' : 'number',
+			'depart' : [ {
+				'depart' : 'string',
+				'name' : 'string'
+			} ]
+		};
+
+		$scope.hasChildren = function(bigL1) {
+			return angular.isArray(bigL1);
+		}
+	});
+</script>
+</html>

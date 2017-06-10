@@ -16,7 +16,7 @@ import agendamento.service.UserService;
 
 @Path("/users")
 public class UserController {
-	
+
 	UserService userService = new UserService();
 
 	@GET
@@ -39,8 +39,9 @@ public class UserController {
 	}
 
 	@PUT
+	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public User updateUser(User user) {
+	public User updateUser(@PathParam("id") int id, User user) {
 		return (userService.updateUser(user));
 	}
 
