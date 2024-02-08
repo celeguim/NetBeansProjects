@@ -19,7 +19,7 @@
 	
 	<properties>
 		<jersey2.version>2.31</jersey2.version>
-		<jaxrs.version>2.0.1</jaxrs.version>
+		<jaxrs.version>2.1.1</jaxrs.version>
 	</properties>
 	
 	<dependencies>
